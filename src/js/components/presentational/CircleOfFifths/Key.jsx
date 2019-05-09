@@ -18,18 +18,18 @@ export default class Key extends Component {
     }
 
     render() {
-
+        const keyShowing = this.state.keyShowing;
         return (
             <div className="key-single">
                 <h1 onClick={this.handleKeyShowing}>{this.props.keyOf}</h1>
-                {this.state.keyShowing ? 
-                    <div>
+                {/* {keyShowing ? */}
+                    <div className={keyShowing ? 'showing key-info' : 'key-info'}>
                         <p>{this.props.sharps }</p>
                         <p>{this.props.flats }</p>
                         <p>{this.props.scale }</p>
                         <p>{this.props.relativeMinor }</p>
                     </div>
-                    : null}
+                    {/* : null} */}
             </div>
 
         );

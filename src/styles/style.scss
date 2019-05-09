@@ -1,3 +1,5 @@
+@import '../js/components/presentational/CircleOfFifths/CircleOfFifths';
+
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -5,14 +7,4 @@
   100% {
     opacity: 1;
   }
-}
-.circle-of-fifths {
-  border: 1px solid black;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
-  border-radius: 50%;
-  display:flex;
-  align-items: center;
-    justify-content: center;
 }
