@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Bpm } from "../presentational/Bpm.jsx";
+import  CircleOfFifths  from "../presentational/CircleOfFifths/CircleOfFifths.jsx";
 
 class Container extends Component {
     constructor(props) {
@@ -15,10 +16,11 @@ class Container extends Component {
             <h1>Welcome!</h1>
 
           <Bpm />
+          <CircleOfFifths />
           </main>
 
-        );
-    }
+
+        )}
 }
 export default Container;
 
