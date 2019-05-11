@@ -20,7 +20,8 @@ export default class Key extends Component {
     render() {
         const keyShowing = this.state.keyShowing;
         return (
-            <div className="key-single">
+            <div className="key-container">
+            <div className={this.props.id+" key-single"}>
                 <h1 onClick={this.handleKeyShowing}>{this.props.keyOf}</h1>
                 {/* {keyShowing ? */}
                     <div className={keyShowing ? 'showing key-info' : 'key-info'}>
@@ -30,6 +31,7 @@ export default class Key extends Component {
                         <p>{this.props.relativeMinor }</p>
                     </div>
                     {/* : null} */}
+            </div>
             </div>
 
         );

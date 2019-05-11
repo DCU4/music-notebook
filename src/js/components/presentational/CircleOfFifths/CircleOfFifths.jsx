@@ -4,19 +4,19 @@ import  Key  from '../CircleOfFifths/Key.jsx'
 export default class CircleOfFifths extends Component {
     constructor(props) {
         super(props);
-        // this.handleKeyShowing = this.handleKeyShowing.bind(this);
+        this.handleKeyShowing = this.handleKeyShowing.bind(this);
         this.state = {
-            // keyShowing: false
+            keyShowing: false
         }
     }
 
-    // handleKeyShowing() {
-    //     const keyShowing = this.state.keyShowing;
-    //     const handle = keyShowing ? false : true;
-    //     this.setState({
-    //         keyShowing: handle
-    //     });
-    // }
+    handleKeyShowing() {
+        const keyShowing = this.state.keyShowing;
+        const handle = keyShowing ? false : true;
+        this.setState({
+            keyShowing: handle
+        });
+    }
 
     render() {
         const keyShowing = this.state.keyShowing;
@@ -42,14 +42,92 @@ export default class CircleOfFifths extends Component {
                 flats: null,
                 scale: 'image file',
                 relativeMinor: 'am'
+            },
+            {
+                key: 'D',
+                sharps: '2#',
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'bm'
+            },
+            {
+                key: 'E',
+                sharps: '4#',
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'c#m'
+            },
+            {
+                key: 'F',
+                sharps: null,
+                flats: '1b',
+                scale: 'image file',
+                relativeMinor: 'am'
+            },
+            {
+                key: 'G',
+                sharps: '1#',
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'em'
+            },
+            {
+                key: 'A',
+                sharps: '3#',
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'f#m'
+            },
+            {
+                key: 'B',
+                sharps: '5#',
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'g#m'
+            },
+            {
+                key: 'C',
+                sharps: null,
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'am'
+            },
+            {
+                key: 'D',
+                sharps: '2#',
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'bm'
+            },
+            {
+                key: 'E',
+                sharps: '4#',
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'c#m'
+            },
+            {
+                key: 'F',
+                sharps: null,
+                flats: '1b',
+                scale: 'image file',
+                relativeMinor: 'am'
+            },
+            {
+                key: 'G',
+                sharps: '1#',
+                flats: null,
+                scale: 'image file',
+                relativeMinor: 'em'
             }
         ]
         
         return (
-            <main className="circle-of-fifths">
+            <main className={keyShowing ? 'key-showing circle-of-fifths' : 'circle-of-fifths'}>
                 {keys.map( (key,i) => 
-                <Key
-                    key={i}
+                <div key={i} onClick={this.handleKeyShowing}>
+                    <Key
+                    id={key.key}
                     keyOf={key.key}
                     sharps={key.sharps}
                     flats={key.flats}
@@ -57,7 +135,11 @@ export default class CircleOfFifths extends Component {
                     relativeMinor={key.relativeMinor}
                     // keyShowing={this.state.handleKeyShowing}
                 />
+                </div>
+                
+                
                 )}
+                <div className="middle">Middle</div>
             </main>
         );
     }
