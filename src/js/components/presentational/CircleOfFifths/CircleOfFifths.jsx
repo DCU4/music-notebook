@@ -30,7 +30,7 @@ export default class CircleOfFifths extends Component {
                 relativeMinor: 'f#m'
             },
             {
-                key: 'B',
+                key: 'B/Cb',
                 sharps: '5#',
                 flats: null,
                 scale: 'image file',
@@ -72,49 +72,35 @@ export default class CircleOfFifths extends Component {
                 relativeMinor: 'em'
             },
             {
-                key: 'A',
+                key: 'Ab',
                 sharps: '3#',
                 flats: null,
                 scale: 'image file',
                 relativeMinor: 'f#m'
             },
             {
-                key: 'B',
+                key: 'Bb',
                 sharps: '5#',
                 flats: null,
                 scale: 'image file',
                 relativeMinor: 'g#m'
             },
             {
-                key: 'C',
-                sharps: null,
-                flats: null,
-                scale: 'image file',
-                relativeMinor: 'am'
-            },
-            {
-                key: 'D',
+                key: 'Db/C#',
                 sharps: '2#',
                 flats: null,
                 scale: 'image file',
                 relativeMinor: 'bm'
             },
             {
-                key: 'E',
+                key: 'Eb',
                 sharps: '4#',
                 flats: null,
                 scale: 'image file',
                 relativeMinor: 'c#m'
             },
             {
-                key: 'F',
-                sharps: null,
-                flats: '1b',
-                scale: 'image file',
-                relativeMinor: 'am'
-            },
-            {
-                key: 'G',
+                key: 'Gb/F#',
                 sharps: '1#',
                 flats: null,
                 scale: 'image file',
@@ -125,7 +111,7 @@ export default class CircleOfFifths extends Component {
         return (
             <main className={keyShowing ? 'key-showing circle-of-fifths' : 'circle-of-fifths'}>
                 {keys.map( (key,i) => 
-                <div key={i} onClick={this.handleKeyShowing}>
+                <div id={key.key} className="key-grid-item" key={i} onClick={this.handleKeyShowing}>
                     <Key
                     id={key.key}
                     keyOf={key.key}
