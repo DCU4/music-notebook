@@ -21,7 +21,7 @@ export default class Key extends Component {
         const keyShowing = this.state.keyShowing;
         return (
             <div className="key-container">
-            <div className={this.props.id+" key-single"}>
+            <div className={this.props.id+" key-single"+keyShowing ? ' showing' : ''}>
                 <h1 onClick={this.handleKeyShowing}>{this.props.keyOf}</h1>
                 {/* {keyShowing ? */}
                     <div className={keyShowing ? 'showing key-info' : 'key-info'}>
