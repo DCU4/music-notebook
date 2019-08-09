@@ -13,9 +13,7 @@ class Container extends Component {
     render() {
         return (
           <main>
-            <h1>Welcome!</h1>
 
-          <Bpm />
           <CircleOfFifths />
           </main>
 
