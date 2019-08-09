@@ -10,7 +10,7 @@ export default class CircleOfFifths extends Component {
     }
   }
 
-  handleKeyShowing() {
+  handleKeyShowing (e)  {
     const keyShowing = this.state.keyShowing;
     const handle = keyShowing ? false : true;
     this.setState({
@@ -20,6 +20,7 @@ export default class CircleOfFifths extends Component {
 
   render() {
     const keyShowing = this.state.keyShowing;
+    console.log(keyShowing);
     // each component has info like sharps/flats, scales, and relative minor keys
     const keys = [
       {
@@ -119,7 +120,8 @@ export default class CircleOfFifths extends Component {
               flats={key.flats}
               scale={key.scale}
               relativeMinor={key.relativeMinor}
-            // keyShowing={this.state.handleKeyShowing}
+              keyShowing={this.state.keyShowing}
+              handleKeyShowing={this.handleKeyShowing}
             />
           </div>
 
