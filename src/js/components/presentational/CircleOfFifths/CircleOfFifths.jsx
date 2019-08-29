@@ -20,7 +20,6 @@ export default class CircleOfFifths extends Component {
 
   render() {
     const keyShowing = this.state.keyShowing;
-    console.log(keyShowing);
     // each component has info like sharps/flats, scales, and relative minor keys
     const keys = [
       {
@@ -110,7 +109,7 @@ export default class CircleOfFifths extends Component {
     ]
 
     return (
-      <main className='circle-of-fifths'>
+      <main className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'}>
         {keys.map((key, i) =>
           <div id={key.key} className="key-grid-item" key={i} onClick={this.handleKeyShowing}>
             <Key
@@ -120,8 +119,7 @@ export default class CircleOfFifths extends Component {
               flats={key.flats}
               scale={key.scale}
               relativeMinor={key.relativeMinor}
-              keyShowing={this.state.keyShowing}
-              handleKeyShowing={this.handleKeyShowing}
+              keyShowing={keyShowing}
             />
           </div>
 

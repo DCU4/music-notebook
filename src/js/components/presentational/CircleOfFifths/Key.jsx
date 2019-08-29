@@ -20,7 +20,7 @@ export default class Key extends Component {
     render() {
         const keyShowing = this.state.keyShowing;
         return (
-            <div className="key-container" onClick={this.handleKeyShowing}>
+            <div className={keyShowing ? "key-container no-show " : "key-container showing"} onClick={this.handleKeyShowing}>
             <div className="key-single">
                 <h1>{this.props.keyOf}</h1>
                 {/* {keyShowing ? */}
