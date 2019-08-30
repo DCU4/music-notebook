@@ -9,9 +9,10 @@ export default class Key extends Component {
         }
     }
 
-    handleKeyShowing() {
+    handleKeyShowing(e) {
         const keyShowing = this.state.keyShowing;
         const handle = keyShowing ? false : true;
+        console.log(e.currentTarget);
         this.setState({
             keyShowing: handle
         });
@@ -20,18 +21,18 @@ export default class Key extends Component {
     render() {
         const keyShowing = this.state.keyShowing;
         return (
-            <div className={keyShowing ? "key-container no-show " : "key-container showing"} onClick={this.handleKeyShowing}>
-            <div className="key-single">
-                <h1>{this.props.keyOf}</h1>
-                {/* {keyShowing ? */}
-                    <div className={keyShowing ? 'showing key-info' : 'key-info'}>
-                        <p>{this.props.sharps }</p>
-                        <p>{this.props.flats }</p>
-                        <p>{this.props.scale }</p>
-                        <p>{this.props.relativeMinor }</p>
-                    </div>
-                    {/* : null} */}
-            </div>
+            <div id={this.props.id} className={keyShowing ? "key-grid-item showing" : "key-grid-item"} onClick={this.handleKeyShowing}>
+              <div className="key-container" >
+                <div className="key-single">
+                    <h1>{this.props.keyOf}</h1>
+                        <div className={keyShowing ? 'showing key-info' : 'key-info'}>
+                            <p>{this.props.sharps }</p>
+                            <p>{this.props.flats }</p>
+                            <p>{this.props.scale }</p>
+                            <p>{this.props.relativeMinor }</p>
+                        </div>
+                </div>
+              </div>
             </div>
 
         );

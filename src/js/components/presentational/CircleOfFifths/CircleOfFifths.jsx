@@ -13,6 +13,7 @@ export default class CircleOfFifths extends Component {
   handleKeyShowing (e)  {
     const keyShowing = this.state.keyShowing;
     const handle = keyShowing ? false : true;
+    console.log(e.currentTarget);
     this.setState({
       keyShowing: handle
     });
@@ -109,10 +110,11 @@ export default class CircleOfFifths extends Component {
     ]
 
     return (
-      <main className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'}>
-        {keys.map((key, i) =>
-          <div id={key.key} className="key-grid-item" key={i} onClick={this.handleKeyShowing}>
+      <main className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'} onClick={this.handleKeyShowing}>
+        {!keyShowing ? (
+          keys.map((key, i) =>
             <Key
+              key={i}
               id={key.key}
               keyOf={key.key}
               sharps={key.sharps}
@@ -121,10 +123,20 @@ export default class CircleOfFifths extends Component {
               relativeMinor={key.relativeMinor}
               keyShowing={keyShowing}
             />
-          </div>
-
-
+          )
+        ) : (
+          console.log(keys.key),
+          <Key
+            id={keys.key}
+            keyOf={keys.key}
+            sharps={keys.sharps}
+            flats={keys.flats}
+            scale={keys.scale}
+            relativeMinor={keys.relativeMinor}
+            keyShowing={keyShowing}
+          />
         )}
+
       </main>
     );
   }
