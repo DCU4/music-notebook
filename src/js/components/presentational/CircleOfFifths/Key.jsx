@@ -5,14 +5,14 @@ export default class Key extends Component {
         super(props);
         this.handleKeyShowing = this.handleKeyShowing.bind(this);
         this.state = {
-            keyShowing: false
+            keyShowing: this.props.keyShowing
         }
     }
 
     handleKeyShowing(e) {
         const keyShowing = this.state.keyShowing;
         const handle = keyShowing ? false : true;
-        console.log(e.currentTarget);
+        // console.log(e.currentTarget);
         this.setState({
             keyShowing: handle
         });
@@ -21,7 +21,7 @@ export default class Key extends Component {
     render() {
         const keyShowing = this.state.keyShowing;
         return (
-            <div id={this.props.id} className={keyShowing ? "key-grid-item showing" : "key-grid-item"} onClick={this.handleKeyShowing}>
+            <div id={this.props.id} className={keyShowing ? "key-grid-item showing" : "key-grid-item"} onClick={this.props.handleKeyShowing}>
               <div className="key-container" >
                 <div className="key-single">
                     <h1>{this.props.keyOf}</h1>

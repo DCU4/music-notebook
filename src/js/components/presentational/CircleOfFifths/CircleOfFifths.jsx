@@ -6,21 +6,27 @@ export default class CircleOfFifths extends Component {
     super(props);
     this.handleKeyShowing = this.handleKeyShowing.bind(this);
     this.state = {
-      keyShowing: false
+      keyShowing: false,
+      keyType: ''
     }
   }
 
   handleKeyShowing (e)  {
     const keyShowing = this.state.keyShowing;
+    const k = this.state.keyType;
     const handle = keyShowing ? false : true;
-    console.log(e.currentTarget);
+    console.log(e.currentTarget.id);
+
     this.setState({
-      keyShowing: handle
+      keyShowing: handle,
+      keyType: e.currentTarget.id
     });
   }
 
   render() {
     const keyShowing = this.state.keyShowing;
+    const k = this.state.keyType;
+    console.log(k);
     // each component has info like sharps/flats, scales, and relative minor keys
     const keys = [
       {
@@ -111,31 +117,35 @@ export default class CircleOfFifths extends Component {
 
     return (
       <main className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'} onClick={this.handleKeyShowing}>
-        {!keyShowing ? (
-          keys.map((key, i) =>
-            <Key
-              key={i}
-              id={key.key}
-              keyOf={key.key}
-              sharps={key.sharps}
-              flats={key.flats}
-              scale={key.scale}
-              relativeMinor={key.relativeMinor}
+          {!keyShowing ? (
+            keys.map((key, i) =>
+              <Key
+                key={i}
+                id={key.key}
+                keyOf={key.key}
+                sharps={key.sharps}
+                flats={key.flats}
+                scale={key.scale}
+                relativeMinor={key.relativeMinor}
+                keyShowing={keyShowing}
+                handleKeyShowing={this.handleKeyShowing}
+              />
+            )
+            ) : (
+              <Key
+              // key={i}
+              id={k}
+              // keyOf={key.key}
+              // sharps={key.sharps}
+              // flats={key.flats}
+              // scale={key.scale}
+              // relativeMinor={key.relativeMinor}
               keyShowing={keyShowing}
+              handleKeyShowing={this.handleKeyShowing}
             />
-          )
-        ) : (
-          console.log(keys.key),
-          <Key
-            id={keys.key}
-            keyOf={keys.key}
-            sharps={keys.sharps}
-            flats={keys.flats}
-            scale={keys.scale}
-            relativeMinor={keys.relativeMinor}
-            keyShowing={keyShowing}
-          />
-        )}
+            )
+          }
+
 
       </main>
     );
