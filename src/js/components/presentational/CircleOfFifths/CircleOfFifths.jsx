@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Key from '../CircleOfFifths/Key.jsx'
+import Key from '../CircleOfFifths/Key.jsx';
+import { CSSTransition } from 'react-transition-group';
 
 export default class CircleOfFifths extends Component {
   constructor(props) {
@@ -7,15 +8,29 @@ export default class CircleOfFifths extends Component {
     this.handleKeyShowing = this.handleKeyShowing.bind(this);
     this.state = {
       keyShowing: false,
+      setKeyShowing:false,
       keyType: ''
     }
+    
   }
 
-  handleKeyShowing (e)  {
+  // keyShowing = () => {
+  //   this.setState(prevState => ({
+  //     keyShowing: !prevState.keyShowing
+  //   }));
+  // };
+
+  setKeyShowing = () => {
+    this.setState(state => ({
+      setKeyShowing: !state.setKeyShowing
+    }));
+  };
+
+  handleKeyShowing(e) {
+    // const [showkey, setShowkey] = React.useState(false); 
     const keyShowing = this.state.keyShowing;
-    const k = this.state.keyType;
     const handle = keyShowing ? false : true;
-    console.log(e.currentTarget.id);
+    console.log(e.currentTarget.id + ' clicked');
 
     this.setState({
       keyShowing: handle,
@@ -27,6 +42,7 @@ export default class CircleOfFifths extends Component {
     const keyShowing = this.state.keyShowing;
     const k = this.state.keyType;
     console.log(k);
+    
     // each component has info like sharps/flats, scales, and relative minor keys
     const keys = [
       {
@@ -114,38 +130,58 @@ export default class CircleOfFifths extends Component {
         relativeMinor: 'em'
       }
     ]
+    console.log(keys);
+    const keyFiltered = keys.filter(function (key) {
+      // console.log(key.key,k,key.key == k);
+      return key.key == k;
+    })
 
     return (
-      <main className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'} onClick={this.handleKeyShowing}>
-          {!keyShowing ? (
-            keys.map((key, i) =>
-              <Key
-                key={i}
-                id={key.key}
-                keyOf={key.key}
-                sharps={key.sharps}
-                flats={key.flats}
-                scale={key.scale}
-                relativeMinor={key.relativeMinor}
-                keyShowing={keyShowing}
-                handleKeyShowing={this.handleKeyShowing}
-              />
-            )
-            ) : (
-              <Key
-              // key={i}
+      <main className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'} >
+        {
+          !keyShowing ? (
+          
+          keys.map((key, i) =>
+            <Key
+              key={i}
+              id={key.key}
+              keyOf={key.key}
+              sharps={key.sharps}
+              flats={key.flats}
+              scale={key.scale}
+              relativeMinor={key.relativeMinor}
+              keyShowing={keyShowing}
+              handleKeyShowing={this.handleKeyShowing}
+              
+            />
+          )
+        ) : (
+          <CSSTransition 
+          in={keyShowing} 
+          timeout={200} 
+          classNames="my-node"
+          unmountOnExit
+          onEntered={this.setKeyShowing}
+          onExit={this.setKeyShowing}
+          // onEnter={() => this.setState({keyShowing:false})}
+          // onExited={() => this.setState({keyShowing:true})}
+        >
+            <Key
               id={k}
-              // keyOf={key.key}
-              // sharps={key.sharps}
-              // flats={key.flats}
-              // scale={key.scale}
-              // relativeMinor={key.relativeMinor}
+              keyOf={keyFiltered[0].key}
+              sharps={keyFiltered[0].sharps}
+              flats={keyFiltered[0].flats}
+              scale={keyFiltered[0].scale}
+              relativeMinor={keyFiltered[0].relativeMinor}
               keyShowing={keyShowing}
               handleKeyShowing={this.handleKeyShowing}
             />
-            )
-          }
-
+          </CSSTransition>
+          
+            
+            
+          )
+        }
 
       </main>
     );

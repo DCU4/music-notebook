@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { CSSTransition } from 'react-transition-group';
 
 export default class Key extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ export default class Key extends Component {
     }
 
     handleKeyShowing(e) {
+        
         const keyShowing = this.state.keyShowing;
         const handle = keyShowing ? false : true;
         // console.log(e.currentTarget);
@@ -21,7 +23,15 @@ export default class Key extends Component {
     render() {
         const keyShowing = this.state.keyShowing;
         return (
-            <div id={this.props.id} className={keyShowing ? "key-grid-item showing" : "key-grid-item"} onClick={this.props.handleKeyShowing}>
+        //     <CSSTransition 
+        //     in={keyShowing} 
+        //     timeout={200} 
+        //     classNames="my-node"
+        //     // onEnter={() => this.setState({keyShowing:false})}
+        //     // onExited={() => this.setState({keyShowing:true})}
+        //   >
+              <div>
+              <div id={this.props.id} className={keyShowing ? "key-grid-item showing" : "key-grid-item"} onClick={this.props.handleKeyShowing}>
               <div className="key-container" >
                 <div className="key-single">
                     <h1>{this.props.keyOf}</h1>
@@ -34,6 +44,10 @@ export default class Key extends Component {
                 </div>
               </div>
             </div>
+              </div>
+            
+        //   </CSSTransition>
+            
 
         );
     }
