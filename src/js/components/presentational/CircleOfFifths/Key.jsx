@@ -30,8 +30,8 @@ export default class Key extends Component {
         //     // onEnter={() => this.setState({keyShowing:false})}
         //     // onExited={() => this.setState({keyShowing:true})}
         //   >
-              <div>
-              <div id={this.props.id} className={`key-grid-item ${this.props.className}`} onClick={this.props.handleKeyShowing}>
+              
+              <div id={this.props.id} className={`key-grid-item ${this.props.className} ${this.props.keyOf}`} onClick={this.props.handleKeyShowing}>
               <div className="key-container" >
                 <div className="key-single">
                     <h1>{this.props.keyOf}</h1>
@@ -44,7 +44,6 @@ export default class Key extends Component {
                 </div>
               </div>
             </div>
-              </div>
             
         //   </CSSTransition>
             

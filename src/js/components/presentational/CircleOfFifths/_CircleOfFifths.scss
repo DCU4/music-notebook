@@ -2,6 +2,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    'A B C D',
+    'E F G Ab',
+    'Bb Db Eb Gb';
   grid-gap: 20px;
   height: 80vh;
   width: 1080px;
@@ -14,13 +18,51 @@
     background-color: #d1d9ff;
     place-self:  stretch;
     box-shadow: 0 1px 10px rgba(159, 168, 218,0.2), 0 3px 10px rgba(159, 168, 218,.8);
-    transform:translateY(0);
+    // transform:translateY(0);
     border-radius: 20px;
     border: 10px #9fa8da solid;
-    transition: all .2s;
-    &:hover {
-      box-shadow: 0 1px 10px rgba(159, 168, 218,0.2), 0 5px 30px rgba(159, 168, 218,1);
-      transform:translateY(-10px);
+    transition: all 1s;
+    opacity:0;
+    // // transition:1s;
+    // &:hover {
+    //   box-shadow: 0 1px 10px rgba(159, 168, 218,0.2), 0 5px 30px rgba(159, 168, 218,1);
+    //   transform:translateY(-10px);
+    // }
+    &.A {
+      grid-area: A;
+    }
+    &.B {
+      grid-area: B;
+    }
+    &.C {
+      grid-area: C;
+    }
+    &.D {
+      grid-area: D;
+    }
+    &.E {
+      grid-area: E;
+    }
+    &.F {
+      grid-area: F;
+    }
+    &.G {
+      grid-area: G;
+    }
+    &.Ab {
+      grid-area: Ab;
+    }
+    &.Bb {
+      grid-area: Bb;
+    }
+    &.Db {
+      grid-area: Db;
+    }
+    &.Eb {
+      grid-area: Eb;
+    }
+    &.Gb {
+      grid-area: Gb;
     }
     &.key-entering {
       opacity:0;
@@ -28,14 +70,15 @@
     }
     &.key-entered{
       opacity:1;
+      // transition:1s;
     }
     &.key-exiting{
-      opacity:1;
-      transform: translateY(0);
+      opacity:0;
+      transition: all 1s;
     }
     &.key-exited {
       opacity:0;
-      transform: translateY(-15px);
+
     }
     .key-container {
       .key-single {
@@ -53,21 +96,38 @@
       }
     }
   }
-}
-.my-node-enter {
-  opacity: 0;
-  transform: scale(0.9);
-}
-.my-node-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 300ms, transform 300ms;
-}
-.my-node-exit {
-  opacity: 1;
-}
-.my-node-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
+  &.single-key-showing {
+    .key-grid-item {
+      background-color: #d1d9ff;
+      place-self:  stretch;
+      box-shadow: 0 1px 10px rgba(159, 168, 218,0.2), 0 3px 10px rgba(159, 168, 218,.8);
+      // transform:translate(0,0,0);
+      border-radius: 20px;
+      border: 10px #9fa8da solid;
+      transition: all 1s;
+      opacity:1;
+      // // transition:1s;
+      // &:hover {
+      //   box-shadow: 0 1px 10px rgba(159, 168, 218,0.2), 0 5px 30px rgba(159, 168, 218,1);
+      //   transform:translateY(-10px);
+      // }
+      &.key-entering {
+        opacity:1;
+        transform:translate(0%) scale(1);
+        transition:1s;
+
+      }
+      &.key-entered{
+        opacity:1;
+        transform:translate(100%) scale(10);
+      }
+      &.key-exiting{
+        opacity:0;
+        transition:1s;
+      }
+      &.key-exited {
+        opacity:0;
+      }
+    }
+  }
 }

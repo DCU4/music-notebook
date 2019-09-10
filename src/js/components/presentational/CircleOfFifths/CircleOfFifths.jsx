@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Key from '../CircleOfFifths/Key.jsx';
-import { Transition } from 'react-transition-group';
+import { Transition, TransitionGroup } from 'react-transition-group';
 
 export default class CircleOfFifths extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ export default class CircleOfFifths extends Component {
         relativeMinor: 'f#m'
       },
       {
-        key: 'B/Cb',
+        key: 'B',
         sharps: '5#',
         flats: null,
         scale: 'image file',
@@ -109,7 +109,7 @@ export default class CircleOfFifths extends Component {
         relativeMinor: 'g#m'
       },
       {
-        key: 'Db/C#',
+        key: 'Db',
         sharps: '2#',
         flats: null,
         scale: 'image file',
@@ -123,7 +123,7 @@ export default class CircleOfFifths extends Component {
         relativeMinor: 'c#m'
       },
       {
-        key: 'Gb/F#',
+        key: 'Gb',
         sharps: '1#',
         flats: null,
         scale: 'image file',
@@ -136,17 +136,22 @@ export default class CircleOfFifths extends Component {
     })
 
     return (
-      <main className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'} >
+      <main >
+        <TransitionGroup className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'}>
         {
           !keyShowing ? (
             
           keys.map((key, i) =>
             <Transition 
             key={i}
-            in={!keyShowing} 
-            timeout={400} 
+            in={keyShowing} 
+            timeout={{
+              appear: 500,
+              enter: 300,
+              exit: 1000}} 
             appear
-            // exit={false}
+            mountOnEnter
+            // unmountOnExit
           >
             {(status) => (
               console.log(status),
@@ -169,11 +174,13 @@ export default class CircleOfFifths extends Component {
         ) : (
           <Transition 
           in={keyShowing} 
-          timeout={400} 
-          // exit
+          timeout={500} 
+          // appear
+          mountOnEnter
+          unmountOnExit
         >
             {(status)=>(
-            console.log(status),
+            // console.log(status),
             <Key
               id={k}
               keyOf={keyFiltered[0].key}
@@ -191,6 +198,7 @@ export default class CircleOfFifths extends Component {
             
           )
         }
+        </TransitionGroup>
 
       </main>
     );
