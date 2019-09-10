@@ -8,7 +8,7 @@ export default class CircleOfFifths extends Component {
     this.handleKeyShowing = this.handleKeyShowing.bind(this);
     this.state = {
       keyShowing: false,
-      setKeyShowing:false,
+      setKeyShowing:true,
       keyType: ''
     }
     
@@ -21,9 +21,11 @@ export default class CircleOfFifths extends Component {
   // };
 
   setKeyShowing = () => {
-    this.setState(state => ({
-      setKeyShowing: !state.setKeyShowing
-    }));
+    const setKeyShowing = this.state.setKeyShowing;
+    const handle = setKeyShowing ? false : true;
+    this.setState({
+      setKeyShowing: handle
+    });
   };
 
   handleKeyShowing(e) {
@@ -39,6 +41,7 @@ export default class CircleOfFifths extends Component {
   }
 
   render() {
+    const setKeyShowing = this.state.setKeyShowing;
     const keyShowing = this.state.keyShowing;
     const k = this.state.keyType;
     console.log(k);
@@ -140,8 +143,18 @@ export default class CircleOfFifths extends Component {
       <main className={keyShowing ? 'circle-of-fifths single-key-showing' : 'circle-of-fifths'} >
         {
           !keyShowing ? (
-          
+            
           keys.map((key, i) =>
+            <CSSTransition 
+            key={i}
+            in={setKeyShowing} 
+            timeout={200} 
+            classNames="my-node"
+            unmountOnExit
+            onExit={()=>this.setKeyShowing}
+            // onEnter={() => this.setState({keyShowing:false})}
+            // onExited={() => this.setState({keyShowing:true})}
+          >
             <Key
               key={i}
               id={key.key}
@@ -154,15 +167,17 @@ export default class CircleOfFifths extends Component {
               handleKeyShowing={this.handleKeyShowing}
               
             />
+            </CSSTransition>
           )
+          
         ) : (
           <CSSTransition 
           in={keyShowing} 
           timeout={200} 
           classNames="my-node"
           unmountOnExit
-          onEntered={this.setKeyShowing}
-          onExit={this.setKeyShowing}
+          onEntered={()=>this.setKeyShowing}
+          onExit={()=>this.setKeyShowing}
           // onEnter={() => this.setState({keyShowing:false})}
           // onExited={() => this.setState({keyShowing:true})}
         >
