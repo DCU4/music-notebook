@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Key from '../CircleOfFifths/Key.jsx';
-import { CSSTransition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 
 export default class CircleOfFifths extends Component {
   constructor(props) {
@@ -8,7 +8,6 @@ export default class CircleOfFifths extends Component {
     this.handleKeyShowing = this.handleKeyShowing.bind(this);
     this.state = {
       keyShowing: false,
-      setKeyShowing:true,
       keyType: ''
     }
     
@@ -20,19 +19,18 @@ export default class CircleOfFifths extends Component {
   //   }));
   // };
 
-  setKeyShowing = () => {
-    const setKeyShowing = this.state.setKeyShowing;
-    const handle = setKeyShowing ? false : true;
-    this.setState({
-      setKeyShowing: handle
-    });
-  };
+  // setKeyShowing = () => {
+  //   const setKeyShowing = this.state.setKeyShowing;
+  //   const handle = setKeyShowing ? false : true;
+  //   this.setState({
+  //     setKeyShowing: handle
+  //   });
+  // };
 
   handleKeyShowing(e) {
-    // const [showkey, setShowkey] = React.useState(false); 
     const keyShowing = this.state.keyShowing;
     const handle = keyShowing ? false : true;
-    console.log(e.currentTarget.id + ' clicked');
+    // console.log(e.currentTarget.id + ' clicked');
 
     this.setState({
       keyShowing: handle,
@@ -41,10 +39,9 @@ export default class CircleOfFifths extends Component {
   }
 
   render() {
-    const setKeyShowing = this.state.setKeyShowing;
     const keyShowing = this.state.keyShowing;
     const k = this.state.keyType;
-    console.log(k);
+    // console.log(k);
     
     // each component has info like sharps/flats, scales, and relative minor keys
     const keys = [
@@ -133,9 +130,8 @@ export default class CircleOfFifths extends Component {
         relativeMinor: 'em'
       }
     ]
-    console.log(keys);
+    // console.log(keys);
     const keyFiltered = keys.filter(function (key) {
-      // console.log(key.key,k,key.key == k);
       return key.key == k;
     })
 
@@ -145,16 +141,15 @@ export default class CircleOfFifths extends Component {
           !keyShowing ? (
             
           keys.map((key, i) =>
-            <CSSTransition 
+            <Transition 
             key={i}
-            in={setKeyShowing} 
-            timeout={200} 
-            classNames="my-node"
-            unmountOnExit
-            onExit={()=>this.setKeyShowing}
-            // onEnter={() => this.setState({keyShowing:false})}
-            // onExited={() => this.setState({keyShowing:true})}
+            in={!keyShowing} 
+            timeout={400} 
+            appear
+            // exit={false}
           >
+            {(status) => (
+              console.log(status),
             <Key
               key={i}
               id={key.key}
@@ -165,22 +160,20 @@ export default class CircleOfFifths extends Component {
               relativeMinor={key.relativeMinor}
               keyShowing={keyShowing}
               handleKeyShowing={this.handleKeyShowing}
+              className={`key key-${status}`}
               
-            />
-            </CSSTransition>
+            />)}
+            </Transition>
           )
           
         ) : (
-          <CSSTransition 
+          <Transition 
           in={keyShowing} 
-          timeout={200} 
-          classNames="my-node"
-          unmountOnExit
-          onEntered={()=>this.setKeyShowing}
-          onExit={()=>this.setKeyShowing}
-          // onEnter={() => this.setState({keyShowing:false})}
-          // onExited={() => this.setState({keyShowing:true})}
+          timeout={400} 
+          // exit
         >
+            {(status)=>(
+            console.log(status),
             <Key
               id={k}
               keyOf={keyFiltered[0].key}
@@ -190,8 +183,9 @@ export default class CircleOfFifths extends Component {
               relativeMinor={keyFiltered[0].relativeMinor}
               keyShowing={keyShowing}
               handleKeyShowing={this.handleKeyShowing}
-            />
-          </CSSTransition>
+              className={`key key-${status}`}
+            />)}
+          </Transition>
           
             
             

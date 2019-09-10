@@ -31,7 +31,7 @@ export default class Key extends Component {
         //     // onExited={() => this.setState({keyShowing:true})}
         //   >
               <div>
-              <div id={this.props.id} className={keyShowing ? "key-grid-item showing" : "key-grid-item"} onClick={this.props.handleKeyShowing}>
+              <div id={this.props.id} className={`key-grid-item ${this.props.className}`} onClick={this.props.handleKeyShowing}>
               <div className="key-container" >
                 <div className="key-single">
                     <h1>{this.props.keyOf}</h1>
