@@ -3,8 +3,8 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
-    'A B C D',
-    'E F G Ab',
+    'A B C D'
+    'E F G Ab'
     'Bb Db Eb Gb';
   grid-gap: 20px;
   height: 80vh;
@@ -87,11 +87,7 @@
         position: relative;
         .key-info {
           opacity:0;
-          position: absolute;
-          transition: .2s all;
-          &.showing {
-            opacity: 1;
-          }
+          
         }
       }
     }
@@ -120,6 +116,26 @@
       &.key-entered{
         opacity:1;
         transform:translate(100%) scale(10);
+        .key-container {
+          .key-single {
+            // margin: 20px;
+            text-align: center;
+            position: relative;
+            .key-info {
+              opacity:0;
+              transition: all .5s ;
+              transition-delay: 1s;
+              p{
+                font-size:7px;
+                transition: all .5s;
+              }
+              &.showing {
+                opacity: 1;
+
+              }
+            }
+          }
+        }
       }
       &.key-exiting{
         opacity:0;
@@ -129,5 +145,6 @@
         opacity:0;
       }
     }
+    
   }
 }
