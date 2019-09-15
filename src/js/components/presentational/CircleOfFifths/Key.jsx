@@ -32,8 +32,8 @@ export default class Key extends Component {
         //   >
               
               <div id={this.props.id} className={`key-grid-item ${this.props.className} ${this.props.keyOf}`} onClick={this.props.handleKeyShowing}>
-              <div className="key-container" >
-                <div className="key-single">
+              {/* <div className="key-container" >
+                <div className="key-single"> */}
                     <h1>{this.props.keyOf}</h1>
                         <div className={keyShowing ? 'showing key-info' : 'key-info'}>
                             <p>{this.props.sharps }</p>
@@ -41,8 +41,8 @@ export default class Key extends Component {
                             <p>{this.props.scale }</p>
                             <p>{this.props.relativeMinor }</p>
                         </div>
-                </div>
-              </div>
+                {/* </div>
+              </div> */}
             </div>
             
         //   </CSSTransition>

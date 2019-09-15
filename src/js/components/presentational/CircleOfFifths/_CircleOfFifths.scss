@@ -7,13 +7,14 @@
     'E F G Ab'
     'Bb Db Eb Gb';
   grid-gap: 20px;
-  height: 80vh;
   width: 1080px;
+  height:94vh;
   margin: 20px auto;
   justify-items: center;
-  // &.single-key-showing {
-  //   // display:flex;
-  // }
+  &.single-key-showing {
+    // display:flex;
+    overflow: hidden;
+  }
   .key-grid-item {
     background-color: #d1d9ff;
     place-self:  stretch;
@@ -23,6 +24,11 @@
     border: 10px #9fa8da solid;
     transition: all 1s;
     opacity:0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    // grid-template-rows:  1fr;
     // // transition:1s;
     // &:hover {
     //   box-shadow: 0 1px 10px rgba(159, 168, 218,0.2), 0 5px 30px rgba(159, 168, 218,1);
@@ -67,6 +73,7 @@
     &.key-entering {
       opacity:0;
       // transition:1s;
+      
     }
     &.key-entered{
       opacity:1;
@@ -75,22 +82,21 @@
     &.key-exiting{
       opacity:0;
       transition: all 1s;
+      // overflow: hidden;
     }
     &.key-exited {
       opacity:0;
 
     }
-    .key-container {
-      .key-single {
-        // margin: 20px;
-        text-align: center;
-        position: relative;
-        .key-info {
-          opacity:0;
-          
-        }
+      .key-info {
+        opacity:0;
+        // transition: all 2s;
+        // transition-delay: 1s;
+        // &.showing {
+        //   opacity:1;
+        // }
       }
-    }
+    
   }
   &.single-key-showing {
     .key-grid-item {
@@ -115,12 +121,10 @@
       }
       &.key-entered{
         opacity:1;
-        transform:translate(100%) scale(10);
-        .key-container {
-          .key-single {
-            // margin: 20px;
-            text-align: center;
-            position: relative;
+        transform:translate(0%) scale(6);
+        position: relative;
+        
+       
             .key-info {
               opacity:0;
               transition: all .5s ;
@@ -134,8 +138,7 @@
 
               }
             }
-          }
-        }
+          
       }
       &.key-exiting{
         opacity:0;
